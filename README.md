@@ -1,7 +1,5 @@
 # 🎯 Sales Funnel Dashboard & File Extractor
 
-![Hero Image](https://via.placeholder.com/1200x300/1e1e2f/ffffff?text=Sales+Funnel+Dashboard+%26+File+Extractor)
-
 A fast, responsive, and lightweight web application built with **Next.js** and **Tailwind CSS**. Designed for performance and simplicity, this project provides a clear interface for sales analytics and data extraction without the need for complex backend infrastructure.
 
 ## ✨ Features

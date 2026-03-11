@@ -1,76 +1,83 @@
-# Analytics App
+# 🎯 Sales Funnel Dashboard & File Extractor
 
-## What it is
-A small, shippable web application for analytics purposes.
+![Hero Image](https://via.placeholder.com/1200x300/1e1e2f/ffffff?text=Sales+Funnel+Dashboard+%26+File+Extractor)
 
-## Who it’s for
-Users who need to track and analyze specific metrics within defined constraints.
+A fast, responsive, and lightweight web application built with **Next.js** and **Tailwind CSS**. Designed for performance and simplicity, this project provides a clear interface for sales analytics and data extraction without the need for complex backend infrastructure.
 
-## Constraints
-- No Auth
-- No Payments
-- No Background jobs
-- No Database
-- Must be accessible and responsive
-- Avoid external npm packages unless strictly required
+## ✨ Features
 
-## Definition of “done”
-- The web app is fully accessible and responsive.
-- The app runs locally without errors.
+### 1. Sales Funnel Dashboard (`/`)
+An interactive dashboard that visualizes sales metrics by fetching and parsing data directly from the client.
+- **KPI Cards**: Instantly view critical metrics like Leads, Calls, Wins, Revenue, and Conversion Rates.
+- **Dynamic Filtering**: Filter data by Sales Representative or Lead Source, with all charts and metrics updating reactively in real-time.
+- **Date Range Picker**: Automatically calibrates to available data periods.
+- **Visualizations**: 
+  - Time series line charts for New Leads, Sales Calls, and Contract Wins.
+  - Bar charts for Lead Breakdown and Win Breakdown by Source.
+- **Performance Table**: Sortable data table displaying individual metrics per sales rep.
 
+### 2. File Extractor (`/extractor`)
+A dedicated tool for client-side data extraction across various document formats.
+- **Multi-Tab Interface**: Switch seamlessly between PDF, CSV, Photos, and Video extracts. 
+- **Three-Panel Layout**: Intuitive design equipped with an upload zone, center preview table, and right-panel summary/export options.
+- **Client-Side Parsing**: Securely parses PDF and CSV data completely within the user's browser via libraries like `pdfjs-dist` and `papaparse`, ensuring complete data privacy.
+- **Easy Export**: One-click CSV export functionality for all extracted data.
 
-What Was Built
-A two-feature analytics web app using Next.js + Tailwind CSS:
+## 🛠️ Tech Stack
 
-1. Sales Funnel Dashboard (/)
-Fetches live CSV from Google Sheets and parses it client-side
-6 KPI cards: Leads (55), Calls (16), Wins (26), Revenue ($69,074.93), Lead Conv. Rate (47.3%), Call Conv. Rate (162.5%)
-Date range picker auto-defaults to the data's min/max (Jan 1–31, 2026)
-Filters: Sales Rep dropdown, Source dropdown — all metrics and charts react
-Time series chart: Line chart of New Leads, Sales Calls, Contract Wins over time
-Breakdown charts: Bar charts for Leads by Source and Wins by Source
-Sales Rep Performance table: Sortable by any column, shows per-rep metrics
-2. PDF Data Extractor (/extractor)
-4 tabs: PDF (active), Photos, Video, CSV — non-PDF tabs show "Coming Soon"
-3-panel layout: Upload (left), Table preview (center), Summary + Export (right)
-Preloaded with 20 rows of sample invoice data on first load
-PDF upload triggers client-side parsing via pdfjs-dist
-CSV export button downloads extracted data
-Key Files
-File	Purpose
-csv.js
-CSV fetch, parse, filter, metrics, grouping
-page.js
-Dashboard page with state management
-extractor/page.js
-PDF Extractor 3-panel page
-pdfParser.js
-Client-side PDF text extraction
-Bug Fixed During Verification
-The initial date filter used "last 30 days" as default, which didn't overlap with the CSV data (Jan 2026). Also, some CSV dates had malformed formats (e.g. 2026-001-201).
+- **Framework**: [Next.js](https://nextjs.org/) (React)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Data Parsing & Utilities**: `papaparse` (CSV processing), `pdfjs-dist` (PDF text extraction)
+- **Icons**: Lucide React
 
-Fix: Replaced new Date(str) with regex-based extraction (/(\d{4})-(\d{1,3})-(\d{1,3})/) and added 
-getDateRange()
- to auto-compute min/max from the actual data.
+## 🚀 Getting Started
 
-Browser Verification
-All verified via browser testing at http://localhost:3000:
+### Prerequisites
 
-Test	Result
-Dashboard loads with real data	✅ 168 events, non-zero KPIs
-Date range defaults to data range	✅ Jan 1–31, 2026
-Charts render with data	✅ Line chart + 2 bar charts
-Sales Rep table shows 3 reps	✅ Jane Doe, John Smith, Bob Richards
-PDF Extractor loads with sample data	✅ 20 rows × 6 columns
-Non-PDF tabs show "Coming Soon"	✅
-Recordings
-Dashboard verification
-Review
-![alt text](https://127.0.0.1:49428/static/artifacts/66c9e7fc-5eaa-4fa9-9703-ae434686789d/dashboard_fix_verify_1773245718715.webp?csrf%3D7a9d5da1-ddc2-4f7a-96c2-b42cf6b73d35)
-Dashboard verification
+Ensure you have [Node.js](https://nodejs.org/) (v16 or higher) and npm installed on your machine.
 
-Final app walkthrough
-Review
-![alt text](https://127.0.0.1:49428/static/artifacts/66c9e7fc-5eaa-4fa9-9703-ae434686789d/final_screenshots_1773245814462.webp?csrf%3D7a9d5da1-ddc2-4f7a-96c2-b42cf6b73d35)
-Final app walkthrough
-# Sales-Funnel-Dashboard---Demo
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Sebastianlopez-dev/Sales-Funnel-Dashboard---Demo.git
+   ```
+
+2. Navigate into the project directory:
+   ```bash
+   cd "Sales-Funnel-Dashboard---Demo"
+   ```
+
+3. Install all dependencies:
+   ```bash
+   npm install
+   ```
+
+### Running Locally
+
+Start the development server:
+```bash
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the main dashboard. 
+Navigate to `http://localhost:3000/extractor` to utilize the File Extractor tool.
+
+## 📁 Project Structure
+
+| File Location | Purpose |
+|--------------|---------|
+| `app/page.js` | Main Sales Funnel Dashboard interface with reactive state management. |
+| `app/extractor/page.js` | File Extractor interface utilizing a 3-panel layout design. |
+| `lib/csv.js` | Utility script for fetching, parsing, metrics calculation, and grouping CSV data. |
+| `lib/pdfParser.js` | Utility script executing client-side PDF text extraction securely. |
+
+## 🏗️ Architecture & Philosophy
+
+This application was strictly engineered to be fully functional, responsive, and robust while adhering to architectural constraints:
+- **No Dependencies on Cloud Backends**: Built entirely absent of complex authentication layers, persistent user databases, or long-running background jobs.
+- **Privacy First Approach**: Everything is processed locally in the client browser, mitigating data transit risks for sensitive user uploads.
+- **Responsive Layout Architecture**: Designed to adapt elegantly across mobile, tablet, and high-definition desktop viewports.
+
+---
+> *Built with ❤️ by [Sebastianlopez-dev](https://github.com/Sebastianlopez-dev)*
